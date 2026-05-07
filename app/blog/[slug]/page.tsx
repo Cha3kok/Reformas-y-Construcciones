@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { posts, getPost } from "../../lib/posts";
+import { getAllPosts, getPost } from "../../lib/posts";
+
+export const dynamicParams = true;
+
+const posts = getAllPosts();
 
 type Props = { params: Promise<{ slug: string }> };
 

@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { posts } from "../lib/posts";
+import { getAllPosts, type Post } from "../lib/posts";
+
+export const dynamic = "force-dynamic";
+
+const posts = getAllPosts();
 
 export const metadata: Metadata = {
   title: "Blog de Reformas | Reformas Costa Granada - Motril",
@@ -76,7 +80,7 @@ export default function BlogPage() {
           {/* Rest of posts */}
           {rest.length > 0 && (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {rest.map((post) => (
+              {rest.map((post: Post) => (
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}
